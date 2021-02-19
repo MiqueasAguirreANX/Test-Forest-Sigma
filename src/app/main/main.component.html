@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="columns">
+        <div class="column has-text-centered">
+          <div class="card my-4 mx-2 p-4">
+              Questions answered<br>
+              <b class="is-size-3">{{ actual_question_order-1 }}</b>
+          </div>
+          <div class="card my-4 mx-2 p-4" *ngIf="completed">
+            Scores<br>
+            <div class="columns" *ngFor="let sub of subcategories; let i = index">
+                <div class="column">{{ sub }}:</div>
+                <div class="column"><span class="tag is-success"> {{ getScore(i) }} </span></div>
+            </div>
+        </div>
+        </div>
+        <div class="column is-two-thirds has-text-centered p-4">
+            <div class="card m-2 p-4" *ngIf="!completed">
+                <p>Question</p>
+                <div class="is-size-2">
+                    <p *ngIf="actual_question_order <= 395">To what extent i like to </p>
+                    <p *ngIf="actual_question_order > 395">TO WHAT EXTENT DO THE FOLLOWING WORDS DESCRIBE YOU ?</p>
+                    <p>{{ actual_question }}</p>
+                </div>
+                <br>
+                <div class="control">
+                    <label class="radio is-size-6 mx-3 my-2">
+                        <input class="is-large" type="radio" #state1 name="answer" (click)="updateQuestion(1); state1.checked = false">
+                        Very little
+                    </label>
+                    <label class="radio is-size-6 mx-3 my-2">
+                        <input class="is-large" type="radio" #state2 name="answer" (click)="updateQuestion(2); state2.checked = false">
+                        Little
+                    </label>
+                    <label class="radio is-size-6 mx-3 my-2">
+                        <input class="is-large" type="radio" #state3 name="answer" (click)="updateQuestion(3); state3.checked = false">
+                        Moderately
+                    </label>
+                    <label class="radio is-size-6 mx-3 my-2">
+                        <input class="is-large" type="radio" #state4 name="answer" (click)="updateQuestion(4); state4.checked = false">
+                        Much
+                    </label>
+                    <label class="radio is-size-6 mx-3 my-2">
+                        <input class="is-large" type="radio" #state5 name="answer" (click)="updateQuestion(5); state5.checked = false">
+                        Very much
+                    </label>
+                  </div>
+
+            </div>
+            <div class="card m-2 p-4" *ngIf="completed">
+                Results profile
+                <div class="columns">
+                    <div class="column">
+                        <b>Very high</b>
+                        <p *ngFor="let sub of getListSub(1)">{{ sub }}</p>
+                    </div>
+                    <div class="column">
+                        <b>High</b>
+                        <p *ngFor="let sub of getListSub(2)">{{ sub }}</p>
+                    </div>
+                    <div class="column">
+                        <b>Moderate</b>
+                        <p *ngFor="let sub of getListSub(3)">{{ sub }}</p>
+                    </div>
+                    <div class="column">
+                        <b>Low</b>
+                        <p *ngFor="let sub of getListSub(4)">{{ sub }}</p>
+                    </div>
+                    <div class="column">
+                        <b>Very low</b>
+                        <p *ngFor="let sub of getListSub(5);">{{ sub }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
